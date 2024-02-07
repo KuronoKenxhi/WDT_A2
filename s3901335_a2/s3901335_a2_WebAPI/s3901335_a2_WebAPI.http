@@ -1,0 +1,6 @@
+@s3901335_a2_WebAPI_HostAddress = http://localhost:5124
+
+GET {{s3901335_a2_WebAPI_HostAddress}}/api/Mcba/
+Accept: application/json
+
+###

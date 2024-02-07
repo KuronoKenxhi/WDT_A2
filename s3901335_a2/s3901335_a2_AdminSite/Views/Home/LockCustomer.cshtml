@@ -1,0 +1,40 @@
+﻿@model Customer
+
+@{
+    ViewData["Title"] = "Confirm Lock Customer";
+}
+
+<h1>Confirm Lock Customer</h1>
+
+<p>Are you sure you want to lock the following customer?</p>
+
+<dl class="row">
+    <dt class="col-sm-2">Customer ID:</dt>
+    <dd class="col-sm-10">@Model.CustomerID</dd>
+
+    <dt class="col-sm-2">Name:</dt>
+    <dd class="col-sm-10">@Model.Name</dd>
+
+    <dt class="col-sm-2">TFN:</dt>
+    <dd class="col-sm-10">@Model.TFN</dd>
+
+    <dt class="col-sm-2">Address:</dt>
+    <dd class="col-sm-10">@Model.Address</dd>
+
+    <dt class="col-sm-2">City:</dt>
+    <dd class="col-sm-10">@Model.City</dd>
+
+    <dt class="col-sm-2">State:</dt>
+    <dd class="col-sm-10">@Model.State</dd>
+
+    <dt class="col-sm-2">PostCode:</dt>
+    <dd class="col-sm-10">@Model.PostCode</dd>
+
+    <dt class="col-sm-2">Mobile:</dt>
+    <dd class="col-sm-10">@Model.Mobile</dd>
+</dl>
+
+<form asp-action="ActuallyLockCustomer" asp-route-id="@Model.CustomerID">
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

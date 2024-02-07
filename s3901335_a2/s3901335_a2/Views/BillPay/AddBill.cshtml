@@ -1,0 +1,58 @@
+﻿@model AddBillViewModel
+@{
+    ViewData["Title"] = "Add Bill";
+}
+
+<div>
+    <h1>Add Bill, @Context.Session.GetString("customerName") (@Context.Session.GetInt32("CustomerID"))</h1>
+    <div class="col-md-4">
+        <form asp-action="AddBill">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AccountNumber" class="control-label">Account Number</label>
+                <select asp-for="AccountNumber"class="form-control">
+                    <option value="0">--</option>
+                    @foreach (var accNumber in Model.AccountNumbers) // Iterate through the accNumber list
+                    {
+                        <option value="@accNumber">@accNumber</option>
+                    }
+                </select>
+                @Html.ValidationMessage("AccountNumber", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="PayeeName" class="control-label">Payee</label>
+                <select asp-for="PayeeName" class="form-control">
+                    <option value="0">--</option>
+                    @foreach (var name in Model.PayeeNames) // Iterate through the payees names list
+                    {
+                        <option value="@name">@name</option>
+                    }
+                </select>
+                @Html.ValidationMessage("PayeeID", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label">Amount</label>
+                <input asp-for="Amount" type="text" class="form-control" value="@Model.Amount">
+                @Html.ValidationMessage("Amount", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="ScheduleTimeLocal" class="control-label">Schedule Time</label>
+                <input asp-for="ScheduleTimeLocal" type="datetime-local" class="form-control"
+                       value="Model.ScheduleTimeUtc">
+                @Html.ValidationMessage("ScheduleTimeLocal", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Period" class="control-label">Period</label>
+                <select asp-for="Period" class="form-control">
+                    <option value="0">--</option>
+                    <option value="@Period.OneOff">One-off</option>
+                    <option value="@Period.Monthly">Monthly</option>
+                </select>
+                @Html.ValidationMessage("Period", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Bill" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

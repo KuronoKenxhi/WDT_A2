@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<h1 class="display-4">Welcome Admin</h1>
+
+<h3>All Customers</h3>
+
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(x => x.CustomerID)</th>
+        <th>@Html.DisplayNameFor(x => x.Name)</th>
+        <th>@Html.DisplayNameFor(x => x.TFN)</th>
+        <th>@Html.DisplayNameFor(x => x.Address)</th>
+        <th>@Html.DisplayNameFor(x => x.City)</th>
+        <th>@Html.DisplayNameFor(x => x.State)</th>
+        <th>@Html.DisplayNameFor(x => x.PostCode)</th>
+        <th>@Html.DisplayNameFor(x => x.Mobile)</th>
+        <th>@Html.DisplayNameFor(x => x.LockState)</th>
+    </tr>
+    @foreach (var customer in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(x => customer.CustomerID)</td>
+            <td>@Html.DisplayFor(x => customer.Name)</td>
+            <td>@Html.DisplayFor(x => customer.TFN)</td>
+            <td>@Html.DisplayFor(x => customer.Address)</td>
+            <td>@Html.DisplayFor(x => customer.City)</td>
+            <td>@Html.DisplayFor(x => customer.State)</td>
+            <td>@Html.DisplayFor(x => customer.PostCode)</td>
+            <td>@Html.DisplayFor(x => customer.Mobile)</td>
+            <td>@Html.DisplayFor(x => customer.LockState)</td>
+            <td><a class="btn btn-primary" asp-action="EditCustomer" asp-route-id="@customer.CustomerID">Edit</a></td>
+            <td><a class="btn btn-primary" asp-action="LockCustomer" asp-route-id="@customer.CustomerID">Lock</a></td>
+        </tr>
+    }
+</table>

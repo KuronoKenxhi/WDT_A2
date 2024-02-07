@@ -1,0 +1,34 @@
+﻿@model BillPay
+
+@{
+    ViewData["Title"] = "Confirm Cancel Bill";
+}
+
+<h1>Confirm Cancel Bill</h1>
+
+<p>Are you sure you want to cancel the following bill payment?</p>
+
+<dl class="row">
+    <dt class="col-sm-2">Bill ID:</dt>
+    <dd class="col-sm-10">@Model.BillPayID</dd>
+
+    <dt class="col-sm-2">Account Number:</dt>
+    <dd class="col-sm-10">@Model.AccountNumber</dd>
+
+    <dt class="col-sm-2">Payee ID:</dt>
+    <dd class="col-sm-10">@Model.PayeeID</dd>
+
+    <dt class="col-sm-2">Amount:</dt>
+    <dd class="col-sm-10">@Model.Amount</dd>
+
+    <dt class="col-sm-2">Scheduled Time:</dt>
+    <dd class="col-sm-10">@Model.ScheduleTimeUtc</dd>
+
+    <dt class="col-sm-2">Period:</dt>
+    <dd class="col-sm-10">@Model.Period</dd>
+</dl>
+
+<form asp-action="CancelBill" asp-route-id="@Model.BillPayID">
+    <button type="submit" class="btn btn-danger">Confirm</button>
+    <a asp-action="BillPay" class="btn btn-secondary">Cancel</a>
+</form>

@@ -1,0 +1,50 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model IPagedList<BillPay>
+@{
+    ViewData["Title"] = "BillPay Overview";
+}
+
+<div>
+    <h1>BillPay Overview</h1>
+    <table class="table">
+        <tr>
+            <th>BillPay ID</th>
+            <th>Account Number</th>
+            <th>Payee ID</th>
+            <th>Amount</th>
+            <th>Scheduled Time (UTC)</th>
+            <th>Period</th>
+        </tr>
+        @foreach (var billpay in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(x => billpay.BillPayID)</td>
+                <td>@Html.DisplayFor(x => billpay.AccountNumber)</td>
+                <td>@Html.DisplayFor(x => billpay.PayeeID)</td>
+                <td>@Html.DisplayFor(x => billpay.Amount)</td>
+                <td>@Html.DisplayFor(x => billpay.ScheduleTimeUtc)</td>
+                <td>@Html.DisplayFor(x => billpay.Period)</td>
+                <td>
+                    <a asp-action="ConfirmCancelBill" asp-route-id="@billpay.BillPayID" class="btn btn-danger">
+                        Cancel Bill
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.PagedListPager(Model, page => Url.Action("BillPay", new { page }),
+            new PagedListRenderOptions
+    {
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" }
+    })
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="AddBill">Add Bill</a>
+</div>
+<div>
+    <a asp-controller="Customer" asp-action="Index">Back to Account Overview</a>
+</div>
